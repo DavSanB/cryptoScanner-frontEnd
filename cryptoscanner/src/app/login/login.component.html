@@ -7,15 +7,15 @@
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre:</label>
                 <input type="text" id="nombre" formControlName="nombre" class="form-control">
-                <div class="m-3 alert alert-danger" *ngIf="loginForm.invalid && (loginForm.controls['nombre'].dirty || loginForm.controls['nombre'].touched)">
-                    <div *ngIf="loginForm.controls['nombre'].errors?.['required']">Este campo es obligatorio</div>
+                <div class="m-3 alert alert-danger" *ngIf="loginForm.controls['nombre'].errors?.['required'] && (loginForm.controls['nombre'].touched)">
+                    <div>Este campo es obligatorio</div>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña:</label>
                 <input type="text" id="password" formControlName="password" class="form-control">
-                <div class="m-3 alert alert-danger" *ngIf="loginForm.invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
-                    <div *ngIf="loginForm.controls['password'].errors?.['required']">Este campo es obligatorio</div>
+                <div class="m-3 alert alert-danger" *ngIf="loginForm.controls['password'].errors?.['required'] && (loginForm.controls['password'].touched)">
+                    <div>Este campo es obligatorio</div>
                 </div>
             </div>
             <button type="submit" class="btn btn-warning" [disabled]="!loginForm.valid" (click)="login()">Entrar</button>

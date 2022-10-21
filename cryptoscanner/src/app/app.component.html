@@ -7,10 +7,18 @@
             </a>
             <ul class="navbar-nav">
                 <li class="nav-item p-1">
-                    <a routerLink="/login" class="nav-link">Log In</a>
-                </li>
-                <li class="nav-item p-1">
-                    <a routerLink="/register" class="nav-link">Sign Up</a>
+                    <a 
+                        *ngIf="this.router.routerState.snapshot.url == '/register'" 
+                        routerLink="/login" 
+                        class="nav-link">
+                            Log In
+                    </a>
+                    <a 
+                        *ngIf="this.router.routerState.snapshot.url == '/login'"
+                        routerLink="/register" (click)="active()"
+                        class="nav-link">
+                            Sign Up
+                    </a>
                 </li>
             </ul>
         </div>

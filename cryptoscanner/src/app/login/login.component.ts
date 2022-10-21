@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UsuarioService } from '../usuario.service';
+import { UsuarioService } from '../auth/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
     password: ['', Validators.required]    
   })
   
-
   constructor(
     private fb: FormBuilder,
     public usuarioServicio: UsuarioService
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this.usuarioServicio.login(this.loginForm.value).subscribe (data => {
-      this.usuarioServicio.setToken(data.token);
+      this.usuarioServicio.setToken(data.access_token)
     })
   }
 

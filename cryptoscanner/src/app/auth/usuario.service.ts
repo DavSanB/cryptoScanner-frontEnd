@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
 import { Usuario } from './usuario';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
   constructor(
     private http: HttpClient,
@@ -15,7 +22,11 @@ export class UsuarioService {
   ) { }
 
   login(usuario: any): Observable<any> {
-    return this.http.post("http://localhost:8000/token", usuario)
+    return this.http.post(environment.GateWay + "/token", usuario, httpOptions)
+  }
+
+  logout():void{
+    this.cookies.deleteAll('/')
   }
 
   setToken(token:string){
