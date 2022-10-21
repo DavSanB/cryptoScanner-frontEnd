@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../auth/usuario.service';
 
 @Component({
@@ -15,16 +16,22 @@ export class LoginComponent implements OnInit {
   })
   
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     public usuarioServicio: UsuarioService
   ) { }
 
   ngOnInit(): void {
+    let token = this.usuarioServicio.getToken()
+    if(token != ""){
+      this.router.navigate(['/dashboard'])
+    }
   }
 
   login(){
     this.usuarioServicio.login(this.loginForm.value).subscribe (data => {
       this.usuarioServicio.setToken(data.access_token)
+      this.router.navigate(['/dashboard'])
     })
   }
 

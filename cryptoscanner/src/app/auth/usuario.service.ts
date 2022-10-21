@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -36,4 +36,9 @@ export class UsuarioService {
   getToken(){
     return this.cookies.get("token")
   }
+
+  getUsuario(): Observable<Usuario> {
+    return this.http.get<Usuario>(environment.GateWay + "/usuarios")
+  }
+
 }

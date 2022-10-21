@@ -1,26 +1,40 @@
 <div class="container-fluid">
     <div class="row navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a routerLink="/login" class="navbar-brand p-3 text-white-50">
-                <i class="bi bi-currency-bitcoin text-warning"></i>
-                CryptoScanner
-            </a>
-            <ul class="navbar-nav">
-                <li class="nav-item p-1">
-                    <a 
-                        *ngIf="this.router.routerState.snapshot.url == '/register'" 
-                        routerLink="/login" 
-                        class="nav-link">
-                            Log In
-                    </a>
-                    <a 
-                        *ngIf="this.router.routerState.snapshot.url == '/login'"
-                        routerLink="/register" (click)="active()"
-                        class="nav-link">
-                            Sign Up
-                    </a>
-                </li>
-            </ul>
+                <a routerLink="/login" class="col navbar-brand p-3 text-white-50">
+                    <i class="bi bi-currency-bitcoin text-warning"></i>
+                    CryptoScanner
+                </a>
+                <div class="col d-flex flex-row-reverse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item p-1">
+                            <a 
+                                *ngIf="this.router.routerState.snapshot.url == '/register'" 
+                                routerLink="/login" 
+                                class="nav-link">
+                                    Log In
+                            </a>
+                            <a 
+                                *ngIf="this.router.routerState.snapshot.url == '/login'"
+                                routerLink="/register"
+                                class="nav-link">
+                                    Sign Up
+                            </a>
+                            <a 
+                                *ngIf="this.router.routerState.snapshot.url == '/dashboard'"
+                                routerLink="/login"
+                                (click) = "LogOut()"
+                                class="nav-link">
+                                    Log Out
+                            </a>
+                        </li>
+                    </ul>
+                    <span
+                        *ngIf="this.router.routerState.snapshot.url == '/dashboard'" 
+                        class="navbar-text p-1 text-white">
+                        <h5>{{UsuarioNombre}}</h5>
+                    </span>
+                </div>
         </div>
     </div>
     <div class="row">

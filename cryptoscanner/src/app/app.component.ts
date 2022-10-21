@@ -9,17 +9,26 @@ import { UsuarioService } from './auth/usuario.service';
 })
 export class AppComponent implements OnInit{
   
-  
+  UsuarioNombre = ""
+
   constructor(
-    public router:Router
+    public router: Router,
+    private token: UsuarioService
   ){}
   ngOnInit(): void {
-
+    let token = this.token.getToken()
+    if(token == ""){
+      this.router.navigate(['/login'])
+    }else{
+      this.router.navigate(['/dashboard'])
+      this.token.getUsuario().subscribe (data => {
+        this.UsuarioNombre = data.nombre
+      })
+    }
   }
 
-  active(){
-    let state: RouterState = this.router.routerState
-    console.log(this.router.routerState.snapshot.url)
+  LogOut(){
+    this.token.logout()
   }
 
 }
