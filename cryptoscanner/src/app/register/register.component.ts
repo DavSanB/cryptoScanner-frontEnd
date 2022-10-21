@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { UsuarioService } from '../auth/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public registerForm = this.fb.group({
+    nombre: ['', Validators.required],
+    password: ['', Validators.required]    
+  })
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    public usuarioServicio: UsuarioService
+  ) { }
 
   ngOnInit(): void {
+    let token = this.usuarioServicio.getToken()
+    if(token != ""){
+      this.router.navigate(['/dashboard'])
+    }
+  }
+
+  login(){
+    this.usuarioServicio.login(this.registerForm.value).subscribe (data => {
+      this.usuarioServicio.setToken(data.access_token)
+      this.router.navigate(['/dashboard'])
+    })
   }
 
 }

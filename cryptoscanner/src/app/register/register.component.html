@@ -1,1 +1,24 @@
-<p>register works!</p>
+<div class="container border p-5 mt-5">
+    <div class="row">
+        <h1>:Sign Up</h1>
+    </div>
+    <div class="row">
+        <form [formGroup]="registerForm ">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" formControlName="nombre" class="form-control">
+                <div class="m-3 alert alert-danger" *ngIf="registerForm .controls['nombre'].errors?.['required'] && (registerForm .controls['nombre'].touched)">
+                    <div>Este campo es obligatorio</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña:</label>
+                <input type="text" id="password" formControlName="password" class="form-control">
+                <div class="m-3 alert alert-danger" *ngIf="registerForm .controls['password'].errors?.['required'] && (registerForm .controls['password'].touched)">
+                    <div>Este campo es obligatorio</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning" [disabled]="!registerForm .valid" (click)="login()">Entrar</button>
+        </form>    
+    </div>
+</div>
