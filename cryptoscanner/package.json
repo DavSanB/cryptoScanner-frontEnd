@@ -21,6 +21,8 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.0",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
+    "event-source-polyfill": "^1.0.31",
+    "ng-event-source": "^1.0.14",
     "ngx-cookie-service": "^14.0.1",
     "rxjs": "~7.5.0",
     "sse.js": "^0.6.1",

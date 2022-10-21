@@ -1,0 +1,21 @@
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Simbolo</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cambio</th>
+            <th scope="col">Volumen</th>
+            <th scope="col">#Trades</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let moneda of monedas">
+            <td>{{moneda[0]}}</td>
+            <td>{{moneda[1]}}</td>
+            <td>{{moneda[2]}}</td>
+            <td>{{moneda[3]}}</td>
+            <td>{{moneda[4]}}</td>
+        </tr>
+    </tbody>
+</table>
