@@ -26,13 +26,15 @@ export class RegisterComponent implements OnInit {
     let token = this.usuarioServicio.getToken()
     if(token != ""){
       this.router.navigate(['/dashboard'])
+      window.location.reload();
     }
   }
 
-  login(){
-    this.usuarioServicio.login(this.registerForm.value).subscribe (data => {
+  register(){
+    this.usuarioServicio.createUsuario(this.registerForm.value).subscribe (data => {
       this.usuarioServicio.setToken(data.access_token)
       this.router.navigate(['/dashboard'])
+      window.location.reload();
     })
   }
 

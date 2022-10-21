@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let token = this.usuarioServicio.getToken()
     if(token != ""){
+      window.location.reload();
       this.router.navigate(['/dashboard'])
     }
   }
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.usuarioServicio.login(this.loginForm.value).subscribe (data => {
       this.usuarioServicio.setToken(data.access_token)
+      window.location.reload();
       this.router.navigate(['/dashboard'])
     })
   }

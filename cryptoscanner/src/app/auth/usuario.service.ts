@@ -41,4 +41,7 @@ export class UsuarioService {
     return this.http.get<Usuario>(environment.GateWay + "/usuarios")
   }
 
+  createUsuario(usuario: any): Observable<any> {
+    return this.http.post(environment.GateWay + "/usuarios", usuario, httpOptions)
+  }
 }
