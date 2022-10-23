@@ -1,0 +1,11 @@
+<div class="toast m-3" data-bs-autohide="false">
+    <div class="toast-header">
+        <i class="bi bi-currency-bitcoin text-warning"></i>
+        <strong class="me-auto">CryptoScanner</strong>
+        <small>Notificación</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" (click)="cerrar()"></button>
+    </div>
+    <div class="toast-body">
+        {{this.toast.mensaje}}
+    </div>
+</div>

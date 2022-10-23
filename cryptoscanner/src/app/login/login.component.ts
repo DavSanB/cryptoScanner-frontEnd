@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../auth/usuario.service';
+import { Toast } from '../toast/toast';
+import { ToastService } from '../toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,13 @@ export class LoginComponent implements OnInit {
     nombre: ['', Validators.required],
     password: ['', Validators.required]    
   })
-  
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    public usuarioServicio: UsuarioService
-  ) { }
+    public usuarioServicio: UsuarioService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     let token = this.usuarioServicio.getToken()
@@ -27,6 +30,7 @@ export class LoginComponent implements OnInit {
       window.location.reload();
       this.router.navigate(['/dashboard'])
     }
+    //this.toastService.error(new Toast(2,"Nooooo"))
   }
 
   login(){

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { EventSourcePolyfill } from 'ng-event-source';
 import { SymbolsService } from './symbols.service';
 
 @Component({
@@ -9,6 +10,9 @@ import { SymbolsService } from './symbols.service';
 
 export class SymbolsComponent implements OnInit {
 
+  @Input() end:boolean = false
+  
+  server!: EventSourcePolyfill
   monedas = []
 
   constructor(
@@ -16,9 +20,22 @@ export class SymbolsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.symbolService.getSymbols().onmessage = (data =>{
+    this.open()
+  }
+
+  open(){
+    this.server = this.symbolService.getSymbols()
+    this.server.onmessage = (data =>{
       this.monedas = JSON.parse(data.data)['data']
     })
+  }
+
+  close(){
+    this.server.close()
+  }
+
+  ngOnDestroy(): void {
+    this.close()
   }
 
 }
