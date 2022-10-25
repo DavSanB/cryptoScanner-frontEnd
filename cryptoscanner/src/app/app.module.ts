@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SymbolsComponent } from './dashboard/symbols/symbols.component';
 import { ToastComponent } from './toast/toast.component';
+import { ConfigComponent } from './dashboard/config/config.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ToastComponent } from './toast/toast.component';
     RegisterComponent,
     DashboardComponent,
     SymbolsComponent,
-    ToastComponent
+    ToastComponent,
+    ConfigComponent
   ],
   imports: [
     BrowserModule,

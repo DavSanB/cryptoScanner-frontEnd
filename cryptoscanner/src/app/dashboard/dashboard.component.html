@@ -1,9 +1,12 @@
 <div class="container-fluid p-5">
     <div class="row">
         <h1>#Dashboard</h1>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#Configuracion" aria-controls="Configuracion">
+            Configuración
+        </button>
     </div>
     <div class="row">
-        <app-symbols [end]="end"></app-symbols>
+        <app-symbols #symbols></app-symbols>
     </div>
-    <div class="row"></div>
 </div>
+<app-config></app-config>

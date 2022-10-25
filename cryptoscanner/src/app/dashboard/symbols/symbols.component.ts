@@ -10,14 +10,14 @@ import { SymbolsService } from './symbols.service';
 
 export class SymbolsComponent implements OnInit {
 
-  @Input() end:boolean = false
-  
   server!: EventSourcePolyfill
   monedas = []
 
   constructor(
     private symbolService:SymbolsService,
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit(): void {
     this.open()

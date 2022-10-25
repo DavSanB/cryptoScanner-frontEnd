@@ -1,15 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { SymbolsComponent } from './symbols/symbols.component';
+import { SymbolsService } from './symbols/symbols.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.sass']
+  styleUrls: ['./dashboard.component.sass'],
+  providers: [SymbolsService]
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() end!:boolean
+  @ViewChild('symbols') symbols!: SymbolsComponent
 
-  constructor() { }
+  constructor(private symbolService:SymbolsService) { 
+    this.symbolService.closedServer$.subscribe(
+      estado => {
+        this.symbols.close()
+      }
+    )
+
+    this.symbolService.openedServer$.subscribe(
+      estado => {
+        this.symbols.open()
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
