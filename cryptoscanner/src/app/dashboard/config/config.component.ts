@@ -1,6 +1,6 @@
 import { Component,OnInit} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ConfigNew } from 'src/app/auth/config';
+import {  ConfigNew } from 'src/app/auth/config';
 import { SymbolsService } from '../symbols/symbols.service';
 import { ConfigService } from './config.service';
 
@@ -16,6 +16,8 @@ export class ConfigComponent implements OnInit {
     orden: ['Cambio']
   })
 
+  colSymbolos: string[] = ["Precio", "Cambio", "Volumen", "#Trades"]
+
   constructor(
     private fb: FormBuilder,
     private symbolService:SymbolsService,
@@ -23,6 +25,10 @@ export class ConfigComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.configService.getConfig().subscribe (data => {
+      this.configForm.controls.monedas.setValue(data.monedas)
+      this.configForm.controls.orden.setValue(data.orden)
+    })
   }
 
   actualizar():void{

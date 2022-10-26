@@ -6,13 +6,12 @@
         <form [formGroup]="configForm" (change)="actualizar()">
             <div class="mb-3">
                 <label for="monedas" class="form-label">Cantidad de monedas seleccionadas: {{ this.configForm.controls.monedas.value }}</label>
-                <input type="range" name="monedas" id="monedas" class="form-range" min="1" max="20" step="1" formControlName="monedas">
+                <input type="range" name="monedas" id="monedas" class="form-range" min="2" max="20" step="1" formControlName="monedas">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="orden">Ordenar por:</label>
                 <select class="form-select" name="orden" id="orden" formControlName="orden">
-                    <option selected>Seleccione alguna opción</option>
-                    <option value="Cambio">Cambio</option>
+                    <option [value]="item" *ngFor="let item of colSymbolos">{{ item }}</option>
                 </select>
             </div>
         </form>

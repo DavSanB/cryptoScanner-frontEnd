@@ -22,7 +22,7 @@ export class SymbolsService {
 
   public getSymbols(): EventSourcePolyfill{
     let token = this.token.getToken()
-    let eventSource = new EventSourcePolyfill(environment.Scanner + "/endless",{
+    let eventSource = new EventSourcePolyfill(environment.Scanner,{
       headers:{Authorization: "Bearer " + token}
     })
     eventSource.onerror = (e: any) =>{

@@ -19,6 +19,10 @@ export class ConfigService {
     private cookies: CookieService
     ) { }
 
+  public getConfig(): Observable<ConfigNew>{
+    return this.http.get<ConfigNew>(environment.GateWay + "/usuarios/config", httpOptions)
+  }
+
   public updateConfig(config:ConfigNew): Observable<ConfigNew>{
     return this.http.put<ConfigNew>(environment.GateWay + "/usuarios/config", config, httpOptions)
   }
