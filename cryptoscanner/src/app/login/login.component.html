@@ -13,7 +13,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña:</label>
-                <input type="text" id="password" formControlName="password" class="form-control">
+                <input type="password" id="password" formControlName="password" class="form-control">
                 <div class="m-3 alert alert-danger" *ngIf="loginForm.controls['password'].errors?.['required'] && (loginForm.controls['password'].touched)">
                     <div>Este campo es obligatorio</div>
                 </div>
